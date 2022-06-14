@@ -23,3 +23,16 @@ module "common" {
   recovery_vault_name  = "assigment1-recovery-vault"
   storage_account_name = "assigment1sa"
 }
+
+module "vmlinux" {
+  source              = "./modules/vmlinux"
+  resource_group_name = module.rgroup.rg.name
+  location            = "australiacentral"
+  nb_vount            = "2"
+  subnet_id           = module.network.subnet.id
+  linux_name          = "assigment1-linux-vm"
+  linux_avs           = "linux-avs"
+  sa_blob_endpoint    = module.common.storage_account.primary_blob_endpoint
+  vm_extension_name   = "network-watcher"
+
+}
