@@ -12,7 +12,7 @@ resource "azurerm_public_ip" "vmlinux-pip" {
   location            = var.location
   resource_group_name = var.resource_group_name
   allocation_method   = "Dynamic"
-  domain_name_label   = "domain-name-label-pip-${format("%1d", count.index + 1)}"
+  domain_name_label   = "dn-lin-0195934-${format("%1d", count.index + 1)}"
   tags                = local.common_tags
 }
 
@@ -74,9 +74,9 @@ resource "azurerm_linux_virtual_machine" "vmlinux-vm" {
 }
 
 resource "azurerm_virtual_machine_extension" "network-watcher" {
-  count = var.nb_vount
+  count                      = var.nb_vount
   name                       = var.vm_extension_name
-  virtual_machine_id       = element(azurerm_linux_virtual_machine.vmlinux-vm[*].id, count.index + 1)
+  virtual_machine_id         = element(azurerm_linux_virtual_machine.vmlinux-vm[*].id, count.index + 1)
   publisher                  = var.vm_extension_info["publisher"]
   type                       = var.vm_extension_info["type"]
   type_handler_version       = var.vm_extension_info["version"]

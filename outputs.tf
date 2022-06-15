@@ -37,3 +37,19 @@ output "linux-vm-private-address" {
 output "linux-vm-public-address" {
   value = module.vmlinux.linux-vm-public-address
 }
+
+output "windows-vm-hostname" {
+  value = module.vmwindows.windows-vm-hostname
+}
+
+output "windows-vm-fqdn" {
+  value = module.vmwindows.windows-vm-fqdn
+}
+
+output "windows-vm-private-address" {
+  value = module.vmwindows.windows-vm-private-address
+}
+
+output "windows-vm-public-address" {
+  value = module.vmwindows.windows-vm-public-address
+}

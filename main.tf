@@ -34,5 +34,18 @@ module "vmlinux" {
   linux_avs           = "linux-avs"
   sa_blob_endpoint    = module.common.storage_account.primary_blob_endpoint
   vm_extension_name   = "network-watcher"
+}
+
+module "vmwindows" {
+  source              = "./modules/vmwindows"
+  resource_group_name = module.rgroup.rg.name
+  location            = "australiacentral"
+  subnet_id           = module.network.subnet.id
+  windows_name = {
+    assigment1-win-vm = "assigment1-win-vm"
+  }
+  windows_avs       = "windows-avs"
+  sa_blob_endpoint  = module.common.storage_account.primary_blob_endpoint
+  vm_extension_name = "antimalware"
 
 }
