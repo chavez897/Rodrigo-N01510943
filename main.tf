@@ -49,3 +49,15 @@ module "vmwindows" {
   vm_extension_name = "antimalware"
 
 }
+
+
+module "datadisk" {
+  source = "./modules/datadisk"
+  resource_group_name = module.rgroup.rg.name
+  location            = "australiacentral"
+  vm_id = {
+    linux1 = module.vmlinux.linux-vm-id[0]
+    linux2 = module.vmlinux.linux-vm-id[1]
+    windows1 = module.vmwindows.windows-vm-id[0]
+  }
+}

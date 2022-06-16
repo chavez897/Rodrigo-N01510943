@@ -1,3 +1,7 @@
+output "windows-vm-id" {
+  value = values(azurerm_windows_virtual_machine.vmwindows-vm)[*].id
+}
+
 output "windows-vm-hostname" {
   value = values(azurerm_windows_virtual_machine.vmwindows-vm)[*].name
 }
