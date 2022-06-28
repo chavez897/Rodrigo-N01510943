@@ -53,3 +53,15 @@ output "windows-vm-private-address" {
 output "windows-vm-public-address" {
   value = module.vmwindows.windows-vm-public-address
 }
+
+output "lb" {
+  value = module.loadbalancer.lb.name
+}
+
+output "linux-vm-nic-id" {
+  value = module.vmlinux.linux-nic-id
+}
+
+output "postgres-server" {
+  value = module.database.server.name
+}

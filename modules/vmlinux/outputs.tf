@@ -17,3 +17,7 @@ output "linux-vm-private-address" {
 output "linux-vm-public-address" {
   value = azurerm_linux_virtual_machine.vmlinux-vm[*].public_ip_address
 }
+
+output "linux-nic-id" {
+  value = azurerm_network_interface.vmlinux-interface[*].id
+}

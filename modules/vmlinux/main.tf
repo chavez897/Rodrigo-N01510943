@@ -73,12 +73,12 @@ resource "azurerm_linux_virtual_machine" "vmlinux-vm" {
   }
 }
 
-resource "azurerm_virtual_machine_extension" "network-watcher" {
-  count                      = var.nb_vount
-  name                       = var.vm_extension_name
-  virtual_machine_id         = element(azurerm_linux_virtual_machine.vmlinux-vm[*].id, count.index + 1)
-  publisher                  = var.vm_extension_info["publisher"]
-  type                       = var.vm_extension_info["type"]
-  type_handler_version       = var.vm_extension_info["version"]
-  auto_upgrade_minor_version = true
-}
+# resource "azurerm_virtual_machine_extension" "network-watcher" {
+#   count                      = var.nb_vount
+#   name                       = var.vm_extension_name
+#   virtual_machine_id         = element(azurerm_linux_virtual_machine.vmlinux-vm[*].id, count.index + 1)
+#   publisher                  = var.vm_extension_info["publisher"]
+#   type                       = var.vm_extension_info["type"]
+#   type_handler_version       = var.vm_extension_info["version"]
+#   auto_upgrade_minor_version = true
+# }

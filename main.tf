@@ -52,12 +52,32 @@ module "vmwindows" {
 
 
 module "datadisk" {
-  source = "./modules/datadisk"
+  source              = "./modules/datadisk"
   resource_group_name = module.rgroup.rg.name
   location            = "australiacentral"
   vm_id = {
-    linux1 = module.vmlinux.linux-vm-id[0]
-    linux2 = module.vmlinux.linux-vm-id[1]
+    linux1   = module.vmlinux.linux-vm-id[0]
+    linux2   = module.vmlinux.linux-vm-id[1]
     windows1 = module.vmwindows.windows-vm-id[0]
   }
+}
+
+module "loadbalancer" {
+  source              = "./modules/loadbalancer"
+  resource_group_name = module.rgroup.rg.name
+  location            = "australiacentral"
+  lb_pip_name         = "lb-pip"
+  lb_name             = "lb"
+  vm_network_interface_id = {
+    linux1 = module.vmlinux.linux-nic-id[0]
+    linux2 = module.vmlinux.linux-nic-id[1]
+  }
+}
+
+module "database" {
+  source              = "./modules/database"
+  resource_group_name = module.rgroup.rg.name
+  location            = "australiacentral"
+  server_name         = "postgres-server"
+  db_name             = "postgres-db"
 }
