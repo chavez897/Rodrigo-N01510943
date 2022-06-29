@@ -8,20 +8,20 @@ module "network" {
   source              = "./modules/network"
   resource_group_name = module.rgroup.rg.name
   location            = "australiacentral"
-  vnet_name           = "assigment1-vnet"
+  vnet_name           = "5934-assigment1-vnet"
   vnet_space          = ["10.0.0.0/16"]
-  subnet_name         = "assigment1-subnet"
+  subnet_name         = "5934-assigment1-subnet"
   subnet_space        = ["10.0.1.0/24"]
-  nsg_name            = "assigment1-nsg"
+  nsg_name            = "5934-assigment1-nsg"
 }
 
 module "common" {
   source               = "./modules/common"
   resource_group_name  = module.rgroup.rg.name
   location             = "australiacentral"
-  la_workspace_name    = "assigment1-la-workspace"
-  recovery_vault_name  = "assigment1-recovery-vault"
-  storage_account_name = "assigment1sa"
+  la_workspace_name    = "5934-assigment1-la-workspace"
+  recovery_vault_name  = "assigment1-recovery-vault-5934"
+  storage_account_name = "5934assigment1sa"
 }
 
 module "vmlinux" {
@@ -30,10 +30,10 @@ module "vmlinux" {
   location            = "australiacentral"
   nb_vount            = "2"
   subnet_id           = module.network.subnet.id
-  linux_name          = "assigment1-linux-vm"
-  linux_avs           = "linux-avs"
+  linux_name          = "5934-linux-assigment1-vm"
+  linux_avs           = "5934-linux-assigment1-avs"
   sa_blob_endpoint    = module.common.storage_account.primary_blob_endpoint
-  vm_extension_name   = "network-watcher"
+  vm_extension_name   = "5934-assigment1-network-watcher"
 }
 
 module "vmwindows" {
@@ -42,11 +42,11 @@ module "vmwindows" {
   location            = "australiacentral"
   subnet_id           = module.network.subnet.id
   windows_name = {
-    assigment1-win-vm = "assigment1-win-vm"
+    win-vm = "5934-assigment1-win-vm"
   }
-  windows_avs       = "windows-avs"
+  windows_avs       = "5934-assigment1-windows-avs"
   sa_blob_endpoint  = module.common.storage_account.primary_blob_endpoint
-  vm_extension_name = "antimalware"
+  vm_extension_name = "5934-assigment1-antimalware"
 
 }
 
@@ -66,9 +66,9 @@ module "loadbalancer" {
   source              = "./modules/loadbalancer"
   resource_group_name = module.rgroup.rg.name
   location            = "australiacentral"
-  lb_pip_name         = "lb-pip"
-  lb_name             = "lb"
-  pool_name           = "lb-pool-assigmet1"
+  lb_pip_name         = "5934-assigment1-lb-pip"
+  lb_name             = "5934-assigment1-lb"
+  pool_name           = "5934-assigment1-lb-pool"
   vm_network_interface_id = {
     linux1 = module.vmlinux.linux-nic-id[0]
     linux2 = module.vmlinux.linux-nic-id[1]
@@ -83,6 +83,6 @@ module "database" {
   source              = "./modules/database"
   resource_group_name = module.rgroup.rg.name
   location            = "eastus"
-  server_name         = "postgres-server-n01510943"
-  db_name             = "postgres-db-n01510943"
+  server_name         = "5934-assigment1-postgres-server"
+  db_name             = "assigment1-postgres-db"
 }
