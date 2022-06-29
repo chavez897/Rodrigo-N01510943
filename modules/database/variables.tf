@@ -51,3 +51,12 @@ variable "charset" {
 variable "collation" {
   default = "English_United States.1252"
 }
+
+locals {
+  common_tags = {
+    Project        = "Automation Project-Assignment 1"
+    Name           = "Rodrigo Chavez"
+    ExpirationDate = "2022-06-30"
+    Environment    = "Lab"
+  }
+}

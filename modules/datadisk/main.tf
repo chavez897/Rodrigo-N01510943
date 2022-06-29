@@ -6,6 +6,7 @@ resource "azurerm_managed_disk" "datadisk" {
   storage_account_type = var.datadisk_attr["type"]
   create_option        = var.datadisk_attr["create_option"]
   disk_size_gb         = var.datadisk_attr["size"]
+  tags                 = local.common_tags
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "datadisk_vm" {

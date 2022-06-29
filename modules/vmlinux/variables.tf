@@ -88,9 +88,9 @@ variable "vm_extension_info" {
 
 locals {
   common_tags = {
-    Name         = "Terraform-Class"
-    Project      = "Learning"
-    ContactEmail = "rodrichavezm@gmail.com"
-    Environment  = "Lab"
+    Project        = "Automation Project-Assignment 1"
+    Name           = "Rodrigo Chavez"
+    ExpirationDate = "2022-06-30"
+    Environment    = "Lab"
   }
 }

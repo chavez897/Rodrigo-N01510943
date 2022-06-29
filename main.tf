@@ -68,13 +68,14 @@ module "loadbalancer" {
   location            = "australiacentral"
   lb_pip_name         = "lb-pip"
   lb_name             = "lb"
+  pool_name           = "lb-pool-assigmet1"
   vm_network_interface_id = {
     linux1 = module.vmlinux.linux-nic-id[0]
     linux2 = module.vmlinux.linux-nic-id[1]
   }
-  vm_linux = {
-    linux1 = module.vmlinux.linux-vm-id[0]
-    linux2 = module.vmlinux.linux-vm-id[1]
+  nic_ip_config_name = {
+    linux1 = module.vmlinux.linux-ip-config-name[0][0]["name"]
+    linux2 = module.vmlinux.linux-ip-config-name[1][0]["name"]
   }
 }
 

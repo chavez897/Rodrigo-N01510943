@@ -58,10 +58,6 @@ output "lb" {
   value = module.loadbalancer.lb.name
 }
 
-output "linux-vm-nic-id" {
-  value = module.vmlinux.linux-nic-id
-}
-
 output "postgres-server" {
   value = module.database.server.name
 }

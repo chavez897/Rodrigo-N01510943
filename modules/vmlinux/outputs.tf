@@ -21,3 +21,7 @@ output "linux-vm-public-address" {
 output "linux-nic-id" {
   value = azurerm_network_interface.vmlinux-interface[*].id
 }
+
+output "linux-ip-config-name" {
+  value = azurerm_network_interface.vmlinux-interface[*].ip_configuration
+}

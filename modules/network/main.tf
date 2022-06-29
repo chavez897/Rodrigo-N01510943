@@ -3,6 +3,7 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = var.vnet_space
   location            = var.location
   resource_group_name = var.resource_group_name
+  tags                = local.common_tags
 }
 
 resource "azurerm_subnet" "subnet" {
@@ -16,6 +17,7 @@ resource "azurerm_network_security_group" "nsg" {
   name                = var.nsg_name
   location            = var.location
   resource_group_name = var.resource_group_name
+  tags                = local.common_tags
 
   security_rule {
     name                       = "rule1"

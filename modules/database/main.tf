@@ -14,6 +14,7 @@ resource "azurerm_postgresql_server" "postgresql-server" {
   administrator_login_password = var.password
   version                      = var.server_version
   ssl_enforcement_enabled      = var.ssl
+  tags                         = local.common_tags
 }
 
 resource "azurerm_postgresql_database" "postgresql-db" {
