@@ -77,7 +77,7 @@ module "loadbalancer" {
 module "database" {
   source              = "./modules/database"
   resource_group_name = module.rgroup.rg.name
-  location            = "australiacentral"
-  server_name         = "postgres-server"
-  db_name             = "postgres-db"
+  location            = "eastus"
+  server_name         = "postgres-server-n01510943"
+  db_name             = "postgres-db-n01510943"
 }

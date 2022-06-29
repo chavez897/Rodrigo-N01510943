@@ -21,12 +21,15 @@ resource "azurerm_lb_backend_address_pool" "lb-address-pool" {
   name            = "acctestpool"
 }
 
-# resource "azurerm_network_interface_backend_address_pool_association" "nic-lb-address-pool" {
-#   for_each                = var.vm_network_interface_id
-#   network_interface_id    = var.vm_network_interface_id[each.key]
-#   ip_configuration_name   = var.vm_network_interface_id[each.key]
-#   backend_address_pool_id = azurerm_lb_backend_address_pool.lb-address-pool.id
-# }
+resource "azurerm_network_interface_backend_address_pool_association" "nic-lb-address-pool" {
+  depends_on = [
+    var.vm_network_interface_id
+  ]
+  for_each                = var.vm_network_interface_id
+  network_interface_id    = var.vm_network_interface_id[each.key]
+  ip_configuration_name   = var.vm_network_interface_id[each.key]
+  backend_address_pool_id = azurerm_lb_backend_address_pool.lb-address-pool.id
+}
 
 resource "azurerm_lb_rule" "lb_rule" {
   loadbalancer_id                = azurerm_lb.lb.id

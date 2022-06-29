@@ -18,7 +18,7 @@ resource "azurerm_postgresql_server" "postgresql-server" {
 
 resource "azurerm_postgresql_database" "postgresql-db" {
   name                = var.db_name
-  resource_group_name = var.location
+  resource_group_name = var.resource_group_name
   server_name         = azurerm_postgresql_server.postgresql-server.name
   charset             = var.charset
   collation           = var.collation
