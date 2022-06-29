@@ -72,6 +72,10 @@ module "loadbalancer" {
     linux1 = module.vmlinux.linux-nic-id[0]
     linux2 = module.vmlinux.linux-nic-id[1]
   }
+  vm_linux = {
+    linux1 = module.vmlinux.linux-vm-id[0]
+    linux2 = module.vmlinux.linux-vm-id[1]
+  }
 }
 
 module "database" {

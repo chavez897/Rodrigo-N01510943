@@ -18,3 +18,8 @@ variable "vm_network_interface_id" {
   type    = map(string)
   default = {}
 }
+
+variable "vm_linux" {
+  type    = map(string)
+  default = {}
+}

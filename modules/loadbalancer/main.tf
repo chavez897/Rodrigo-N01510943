@@ -23,7 +23,7 @@ resource "azurerm_lb_backend_address_pool" "lb-address-pool" {
 
 resource "azurerm_network_interface_backend_address_pool_association" "nic-lb-address-pool" {
   depends_on = [
-    var.vm_network_interface_id
+    var.vm_network_interface_id, var.vm_linux
   ]
   for_each                = var.vm_network_interface_id
   network_interface_id    = var.vm_network_interface_id[each.key]

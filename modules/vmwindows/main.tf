@@ -71,12 +71,12 @@ resource "azurerm_windows_virtual_machine" "vmwindows-vm" {
   }
 }
 
-# resource "azurerm_virtual_machine_extension" "antimalware" {
-#   for_each                   = var.windows_name
-#   name                       = var.vm_extension_name
-#   virtual_machine_id         = azurerm_windows_virtual_machine.vmwindows-vm[each.key].id
-#   publisher                  = var.vm_extension_info["publisher"]
-#   type                       = var.vm_extension_info["type"]
-#   type_handler_version       = var.vm_extension_info["version"]
-#   auto_upgrade_minor_version = true
-# }
+resource "azurerm_virtual_machine_extension" "antimalware" {
+  for_each                   = var.windows_name
+  name                       = var.vm_extension_name
+  virtual_machine_id         = azurerm_windows_virtual_machine.vmwindows-vm[each.key].id
+  publisher                  = var.vm_extension_info["publisher"]
+  type                       = var.vm_extension_info["type"]
+  type_handler_version       = var.vm_extension_info["version"]
+  auto_upgrade_minor_version = true
+}
