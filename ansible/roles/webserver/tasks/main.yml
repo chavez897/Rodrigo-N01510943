@@ -1,0 +1,20 @@
+- name: Create File
+  file:
+    path: ./{{ ansible_facts['hostname'] }}.html
+    state: touch
+  delegate_to: localhost
+- name: "Write"
+  copy:
+    content: "{{ ansible_facts['hostname'] }}"
+    dest: ./{{ ansible_facts['hostname'] }}.html
+  delegate_to: localhost
+- name: Install apache
+  yum:
+    name: httpd
+    state: present
+- name:  copy file
+  copy: 
+    src: ./{{ ansible_facts['hostname'] }}.html
+    dest: /var/www/html/index.html
+    mode: 0444
+  notify: start_apache

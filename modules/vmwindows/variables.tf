@@ -36,7 +36,7 @@ variable "update_domain_count" {
 }
 
 variable "user_admin" {
-  default = "Rodrigo-N01510943"
+  default = "rodrigo0943"
 }
 
 variable "password" {

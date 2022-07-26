@@ -1,0 +1,38 @@
+---
+- name: Create Group cloudadmins
+  group:
+    name: cloudadmins
+    state: present
+- name: Create User users
+  user:
+    name: "{{ item.username }}"
+    groups: cloudadmins, wheel
+    generate_ssh_key: yes
+    state: present
+  loop: "{{ user_list }}"
+- name: Fetch public key
+  fetch:
+    src: "/home/{{ item.username }}/.ssh/id_rsa.pub"
+    dest: "./keys/{{ ansible_facts['hostname'] }}/{{ item.username }}/"
+    flat: yes
+  loop: "{{ user_list }}"
+- name: Fetch private key
+  fetch:
+    src: "/home/{{ item.username }}/.ssh/id_rsa"
+    dest: "./keys/{{ ansible_facts['hostname'] }}/{{ item.username }}/"
+    flat: yes
+  loop: "{{ user_list }}"
+- name: Set authorized key for vm1
+  authorized_key:
+    user: "{{ item.username }}"
+    state: present
+    key: "{{ lookup('file', './keys/centos-1-assigment1/{{ item.username }}/id_rsa.pub') }}"
+  loop: "{{ user_list }}"
+  when: ansible_facts['hostname'] == "{{ hostname1 }}"
+- name: Set authorized key for vm2
+  authorized_key:
+    user: "{{ item.username }}"
+    state: present
+    key: "{{ lookup('file', './keys/centos-2-assigment1/{{ item.username }}/id_rsa.pub') }}"
+  loop: "{{ user_list }}"
+  when: ansible_facts['hostname'] == "{{ hostname2 }}"

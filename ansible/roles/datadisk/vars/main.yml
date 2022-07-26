@@ -1,0 +1,9 @@
+---
+device: /dev/sdc
+mounting:
+  - directory: /part1
+    fstype: xfs
+    dev: /dev/sdc1
+  - directory: /part2
+    fstype: ext4
+    dev: /dev/sdc2

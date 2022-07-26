@@ -43,7 +43,7 @@ variable "size" {
 }
 
 variable "user_admin" {
-  default = "Rodrigo-N01510943"
+  default = "rodrigo0943"
 }
 
 variable "password" {

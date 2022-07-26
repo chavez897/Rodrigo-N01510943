@@ -1,0 +1,9 @@
+---
+- name: Assigment2
+  hosts: linux
+  gather_facts: true
+  roles:
+    - datadisk
+    - system_profile
+    - users
+    - webserver

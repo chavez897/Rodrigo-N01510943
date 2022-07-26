@@ -30,3 +30,7 @@ locals {
     Environment    = "Lab"
   }
 }
+
+variable "playbook_path" {
+  default = "/home/rodrigo0943/automation/terraform/Rodrigo-N01510943/ansible/playbook.yml"
+}

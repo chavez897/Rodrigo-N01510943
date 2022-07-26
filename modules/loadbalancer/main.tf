@@ -32,17 +32,19 @@ resource "azurerm_network_interface_backend_address_pool_association" "nic-lb-ad
   backend_address_pool_id = azurerm_lb_backend_address_pool.lb-address-pool.id
 }
 
-resource "azurerm_lb_rule" "lb_rule" {
-  loadbalancer_id                = azurerm_lb.lb.id
-  name                           = "LBRule"
-  protocol                       = "Tcp"
-  frontend_port                  = 22
-  backend_port                   = 22
-  frontend_ip_configuration_name = "PublicIPAddress"
-}
-
 resource "azurerm_lb_probe" "lb_probe" {
   loadbalancer_id = azurerm_lb.lb.id
-  name            = "ssh-running-probe"
-  port            = 22
+  name            = "http-running-probe"
+  port            = 80
+}
+
+resource "azurerm_lb_rule" "lb_rule" {
+  loadbalancer_id                = azurerm_lb.lb.id
+  name                           = "HTTPRule"
+  protocol                       = "Tcp"
+  frontend_port                  = 80
+  backend_port                   = 80
+  frontend_ip_configuration_name = "PublicIPAddress"
+  backend_address_pool_ids       = [azurerm_lb_backend_address_pool.lb-address-pool.id]
+  probe_id                       =  azurerm_lb_probe.lb_probe.id
 }

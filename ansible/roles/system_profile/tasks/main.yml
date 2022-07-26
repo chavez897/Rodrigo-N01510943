@@ -1,0 +1,10 @@
+---
+- name: adding comment
+  blockinfile:
+    path: /etc/profile
+    insertafter: EOF
+    backup: yes
+    state: present
+    block:
+      "# This is a test block added by Ansible......{{ username }}\n
+      export TMOUT={{ tmout }}"

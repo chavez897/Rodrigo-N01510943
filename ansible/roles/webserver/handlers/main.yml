@@ -1,0 +1,6 @@
+---
+- name: start_apache
+  systemd:
+    name: httpd
+    state: started
+    enabled: true

@@ -1,0 +1,31 @@
+---
+- name: Create 4GB partition
+  parted:
+    device: "{{ device }}"
+    number: 1
+    state: present
+    part_end: 4GiB
+- name: Create 5GB partition
+  parted:
+    device: "{{ device }}"
+    number: 2
+    state: present
+    part_start: 4GiB
+    part_end: 9GiB
+- name: Create directories
+  file:
+    path: "{{ item.directory }}"
+    state: directory
+  loop: "{{ mounting }}"
+- name: Create fstype
+  filesystem:
+    fstype: "{{ item.fstype }}"
+    dev: "{{ item.dev }}"
+  loop: "{{ mounting }}"
+- name: Mount
+  mount:
+    path: "{{ item.directory }}"
+    src: "{{ item.dev }}"
+    fstype: "{{ item.fstype }}"
+    state: mounted
+  loop: "{{ mounting }}"
