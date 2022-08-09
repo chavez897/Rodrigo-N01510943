@@ -32,3 +32,7 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+ansible/keys/*
+ansible/centos-1-assigment1.html
+ansible/centos-2-assigment1.html
